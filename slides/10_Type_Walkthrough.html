@@ -1,0 +1,36 @@
+<section>
+  <div>
+    <img src="images/Spock_Cat.jpg" alt="Spock Cat">
+    <p style="font-size: small">(Star Trek: The Original Series. Season 2, Episode 7. (Oct 27, 1967))</p>
+  </div>
+</section>
+
+<section>
+  <h3 style="height:100%; text-align:top">Type Scaffold</h3>
+  <div style="height:100%">
+    <pre><code data-trim class="ruby">
+module Puppet
+  newtype(:ex_order) do
+    def initialize(args) super(args) end
+
+    def finish(args) super end
+
+    newparam(:name) do
+      desc "Everybody needs a name!"
+      isnamevar
+    end
+
+    newparam(:foo) do desc "Foo!" end
+
+    newproperty(:baz) do desc "Property Baz" end
+
+    newparam(:bar) do desc "Parameter Bar" end
+
+    validate do true end
+
+    autorequire(:file) do ['/tmp/foo'] end
+  end
+end
+    </code></pre>
+  </div>
+</section>
