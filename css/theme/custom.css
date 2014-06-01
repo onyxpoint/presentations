@@ -16,28 +16,36 @@ body {
 }
 
 .reveal h2 {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 
 .reveal h3 {
-    margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 .reveal h3.fin {
-    margin-top: 2em;
+  margin-top: 2em;
 }
 .reveal h3.questions {
-    color:red;
-    font-size: 400%;
-    font-weight: bold;
+  color:red;
+  font-size: 400%;
+  font-weight: bold;
+}
+
+.reveal pre code {
+  max-height: 650px;
 }
 
 .reveal code {
-    font-size: 82%;
+  font-size: 82%;
 }
 
 .reveal .author {
-    margin-top: 2em;
-    font-size: smaller;
+  margin-top: 2em;
+  font-size: smaller;
+}
+
+.reveal strong {
+  color: #30BF30
 }
 
 .reveal li {
@@ -46,16 +54,22 @@ body {
     margin-bottom: 0.35em;
 }
 
-.reveal .slides section {
-    height: 90%;
-    margin-top: 10%;
-}
-
 /*  Images */
 .reveal section img {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #EEEEEE;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reveal dl {
+  list-style-type: square;
+  text-align: left;
+}
+
+.reveal dd {
+  display: list-item;
+  list-style-type: square;
+  margin-left: 80px;
 }
 
 /*  Second level lists  */
@@ -66,7 +80,13 @@ body {
 
 /*  Source Code  */
 .reveal pre {
-    font-size: 0.8em;
+  font-size: 0.8em;
+}
+
+/* My preferred text body alignment */
+.reveal div.text_body {
+  margin-top: 40pt;
+  text-align: left;
 }
 
 /*********************************************

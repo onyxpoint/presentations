@@ -6,35 +6,62 @@ require 'erb'
 require 'find'
 require 'rake/clean'
 
-TITLE = 'Interesting Title'
-DESCRIPTION = 'My Presentation'
-AUTHOR = 'My Name'
-GLOBAL_HEADER = 'Header Words'
+### General Presentation Information ###
+TITLE = 'Puppet Type and Provider Execution'
+DESCRIPTION = 'A presentation that covers the execution of types and providers across both the Puppet server and client.'
+AUTHOR = 'Trevor Vaughan - Onyx Point, Inc.'
+GLOBAL_HEADER = 'Puppet Type and Provider Execution'
+### End General Presentation Information ###
+
+### Slide Management ###
+
+FIRST_SLIDE = '00'
+LAST_SLIDE = '999'
+
+# A template for creating new slides.
+SLIDE_TEMPLATE = <<-EOM
+<section>
+</section>
+EOM
+
+### End Slide Management ###
+
 BUILD_DIR = 'build'
+SLIDE_DIR = 'slides'
 REVEAL_JS_SRC = 'https://github.com/onyxpoint/reveal.js'
 
 CLOBBER.include(
   BUILD_DIR
 )
 
+def sorted_slides
+  Dir.chdir(SLIDE_DIR) do
+    Dir.glob('*').sort_by{|f| File.basename(f,'.html').split('_').first.to_i}.each do |x|
+      if File.directory?(x) or x =~ /\.html$/
+        yield(x)
+      end
+    end
+  end
+end
+
 # This can handle nested slides, unfortunately the header mods by Ciges
 # currently cause issues with vertical scrolling.
 def build_slides(slides)
-  Dir.glob('*').sort_by{|f| File.basename(f,'.html').split('_').last.to_i}.each do |x|
-    if File.directory?(x)
+  sorted_slides do |slide|
+    if File.directory?(slide)
       slides << '<section>'
-    elsif x =~ /\.html$/
-      slides << File.read(x).chomp
+    elsif slide =~ /\.html$/
+      slides << File.read(slide).chomp
     end
 
-    subdir = File.basename(x,'.html')
+    subdir = File.basename(slide,'.html')
     if File.directory?(subdir)
       Dir.chdir(subdir) do
         build_slides(slides)
       end
     end
 
-    if File.directory?(x)
+    if File.directory?(slide)
       slides << '</section>'
     end
   end
@@ -57,9 +84,7 @@ task :build do
   end
 
   slides = []
-  Dir.chdir('slides') do
-    slides = build_slides(slides)
-  end
+  slides = build_slides(slides)
 
   # Build the index.html file
   File.open('index.html','w') { |fh|
@@ -85,3 +110,21 @@ task :clean do
 end
 
 task :default => 'build'
+
+namespace :slide do
+  slide_deck = {}
+  sorted_slides do |slide|
+    slide_deck[slide.split('_').first.to_i] = slide
+  end
+
+  Dir.chdir(SLIDE_DIR) do
+
+    desc <<-EOM
+      Add a slide to the deck
+      An optional ID may be provided for the slide and the other slides will be adjusted accordingly.
+      EOM
+    task :add,[:id] do
+      puts 'TBD'
+    end
+  end
+end

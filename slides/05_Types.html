@@ -1,0 +1,52 @@
+<section>
+<h3>What are Types? - The Basics</h3>
+<div class="text_body">
+  <dl>
+    <dt class="fragment" style="font-weight:bold; color:#30BF30">Properties</dt>
+    <dd class="fragment">Something that can be measured and changed on the system</dd>
+
+    <dt class="fragment" style="font-weight:bold; color:#30BF30">Parameters</dt>
+    <dd class="fragment">Change how Puppet manages resources through the Properties</dd>
+    <dd class="fragment">Think of them as variables</dd>
+
+    <dt class="fragment" style="font-weight:bold; color:#30BF30">Validation</dt>
+    <dd class="fragment">Anything that you need to do to validate your resource</dd>
+
+    <dt class="fragment" style="font-weight:bold; color:#30BF30">Autorequires</dt>
+    <dd class="fragment">Provides the ability to require other catalog resources if they happen to be defined</dd>
+    <dd class="fragment">Does <strong>not</strong> require resources to be defined!</dd>
+  </dl>
+</div>
+</section>
+
+<section>
+<h3>What are Types? - Advanced</h3>
+<div class="text_body">
+  <dl>
+    <dt class="fragment" style="font-weight:bold; color:#30BF30">Initializer</dt>
+    <dd class="fragment">Provides the ability to manipulate the resource mid-compile</dd>
+
+    <dt class="fragment" style="font-weight:bold; color:#30BF30">Finish</dt>
+    <dd class="fragment">Anything that you want to do to your resource at the end of the compilation</dd>
+
+    <dt class="fragment" style="font-weight:bold; color:#30BF30">Post-Resource Evaluation</dt>
+    <dd class="fragment">Magic! Allows for a resource cleanup (Puppet &gt; 3.4.0 only)
+  </dl>
+</div>
+</section>
+
+<section>
+<h3>What are Providers?</h3>
+<div class="text_body">
+  <dl>
+    <dt class="fragment" style="font-weight:bold; color:#30BF30">Initializer</dt>
+    <dd class="fragment">A place to do all sorts of fun things that persist across the provider</dd>
+
+    <dt class="fragment" style="font-weight:bold; color:#30BF30">Property Methods</dt>
+    <dd class="fragment">Automatically referenced methods for manipulating properties on the system</dd>
+
+    <dt class="fragment" style="font-weight:bold; color:#30BF30">Miscellaneous</dt>
+    <dd class="fragment">Any other method that is useful to your type</dd>
+  </dl>
+</div>
+</section>
