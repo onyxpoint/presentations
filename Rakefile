@@ -98,7 +98,7 @@ desc "Reset the bulid directory to a clean state"
 task :clean do
   Dir.chdir(BUILD_DIR) do
     puts "== In #{BUILD_DIR} =="
-    sh %{git clean -qf}
+    sh %{git clean -qdf}
     sh %{git reset -q --hard HEAD}
     puts "== Leaving #{BUILD_DIR} =="
   end
