@@ -1,0 +1,84 @@
+<section>
+  <h2>Puppet Basics - Model Driven</h2>
+  <div class='text_body'>
+    <ul>
+      <li>Create a model of your system</li>
+      <li>Let the system figure out how to get you there</li>
+    </ul>
+  </div>
+  <br/>
+  <img src='images/basic_model.png' alt="Basic Puppet Model"/>
+</section>
+
+<section>
+  <h2>Resources</h2>
+    <br/>
+    <pre><code data-trim class='ruby'>
+package { 'openssh-server':
+  notify =&gt; File['/etc/ssh/sshd_config']
+}
+
+file { '/etc/ssh/sshd_config':
+  notify =&gt; Service['sshd']
+}
+
+service { 'sshd':
+  ensure =&gt; 'running'
+}
+    </code></pre>
+</section>
+
+<section>
+  <h2>Classes and Definitions</h2>
+  <div class='text_body'>
+    <ul>
+      <li>Building Blocks of Reusable Functionality</li>
+      <li><strong>Classes</strong> - Singletons =&gt; Can Inherit</li>
+      <li><strong>Defines</strong> - Multiple =&gt; Cannot Inherit</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Classes</h2>
+  <pre><code data-trim class='ruby'>
+class 'ssh' (
+  $enable_service =&gt; true,
+  $port =&gt; '22'
+){
+  file { '/etc/ssh/sshd_config':
+    content =&gt; template('modules/ssh/sshd_config.erb')
+  }
+  service { 'sshd':
+    enable =&gt; $enable_service,
+    subscribe =&gt; File['/etc/ssh/sshd_config']
+  }
+}
+  </code></pre>
+  <pre><code data-trim class='ruby'>
+include 'ssh'
+  </code></pre>
+</section>
+
+<section>
+  <h2>Defines</h2>
+  <pre><code data-trim class='ruby'>
+define mkusr (
+  $uid
+) {
+  group { $name:
+    gid =&gt; $uid
+  }
+
+  user { $name:
+    uid =&gt; $uid,
+    gid =&gt; $name
+  }
+}
+  </code></pre>
+  <pre><code data-trim class='ruby'>
+mkusr { 'bob': uid =&gt; '1111' }
+mkusr { 'alice': uid =&gt; '1112' }
+mkusr { 'eve': uid =&gt; '1337' }
+  </code></pre>
+</section>

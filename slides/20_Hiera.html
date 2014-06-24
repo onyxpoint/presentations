@@ -1,0 +1,89 @@
+<section>
+  <h2>Hiera</h2>
+  <h3>/ˈhī(ə)ˌrä/</h3>
+  <br/>
+  <div class='text-body'>
+    <ul>
+      <li>Useful for separating data from logic</li>
+      <li>
+        Can use facts and interpolation to generate more powerful hierarchies
+        <ul>
+          <li>See <a href="https://github.com/onyxpoint/hiera/tree/bugs/HI-183">my custom patch</a> for interpolating hashes and arrays</li>
+        </ul>
+      </li>
+      <li>
+        YAML or JSON input
+        <ul>
+          <li>JSON does <strong>not</strong> support comments</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Sample Hierarchy Config</h2>
+  <p>File: /etc/puppet/hiera.yaml</p>
+  <pre><code data-trim class='ruby'>
+---
+:backends:
+  - yaml
+:yaml:
+  :datadir: /etc/puppet/hieradata
+:hierarchy:
+  - %{fqdn}.yaml
+  - top.yaml
+  </code></pre>
+</section>
+
+<section>
+  <h2>Sample Hierarchy</h2>
+  <p>File: /etc/puppet/hieradata/top.yaml</p>
+  <pre><code data-trim class='ruby'>
+---
+classes:
+  - 'foo'
+
+foo::var1: 'foo'
+foo::var2: %{'foo::var1'}
+foo::var3: 'bar'
+  </code></pre>
+
+  <p>File: /etc/puppet/hieradata/my.f.q.d.n.yaml</p>
+  <pre><code data-trim class='ruby'>
+---
+foo::var3: 'baz'
+  </code></pre>
+</section>
+
+<section>
+  <h2>Example</h2>
+  <pre><code data-trim class='ruby'>
+class foo ($var1 = 'one', $var2 = 'two', $var3 = 'three', $var4 = 'four')
+{
+  notice("Var1 = $var1")
+  notice("Var2 = $var2")
+  notice("Var3 = $var3")
+  notice("Var4 = $var4")
+}
+  </code></pre>
+  <div class='fragment'>
+    <p><strong>Hostname:</strong> my.f.q.d.n
+    <pre><code data-trim class='ruby'>
+Var1 = foo
+Var2 = foo
+Var3 = baz
+Var4 = four
+    </code></pre>
+  </div>
+
+  <div class='fragment'>
+    <p><strong>Hostname:</strong> other.f.q.d.n
+    <pre><code data-trim class='ruby'>
+Var1 = foo
+Var2 = foo
+Var3 = *bar*
+Var4 = four
+    </code></pre>
+  </div>
+</section>
