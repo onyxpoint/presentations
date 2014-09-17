@@ -20,7 +20,7 @@ CLOBBER.include(
 # This can handle nested slides, unfortunately the header mods by Ciges
 # currently cause issues with vertical scrolling.
 def build_slides(slides)
-  Dir.glob('*').sort_by{|f| File.basename(f,'.html').split('_').last.to_i}.each do |x|
+  Dir.glob('*').sort_by{|f| File.basename(f,'.html').split('_').first.to_i}.each do |x|
     if File.directory?(x)
       slides << '<section>'
     elsif x =~ /\.html$/
