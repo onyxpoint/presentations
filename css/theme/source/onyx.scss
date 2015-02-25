@@ -1,0 +1,100 @@
+/**
+ * Black theme for reveal.js. This is the opposite of the 'white' theme.
+ *
+ * Copyright (C) 2015 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #2A2B2B;
+
+$mainColor: #fff;
+$headingColor: #fff;
+
+$mainFontSize: 38px;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+$linkColor: #30BF30;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.0em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-light-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #2A2B2B;
+	}
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+/*********************************************
+ * Header Bar
+ ********************************************/
+
+.reveal div.topbar {
+  background: #344742;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: -1;
+  margin-top: 20px;
+  border-radius: 50px;
+  moz-border-radius: 5px;
+  webkit-border-radius: 5px;
+}
+
+/* Normal Header Bar */
+.reveal div.topbar .logo {
+#  background: #4EA000;
+#  border-left: solid #30BF30 10px;
+#  border-right: solid #30BF30 10px;
+  padding: margin 10px;
+  border-radius: 15px;
+  padding: 5px;
+  moz-border-radius: 15px;
+  webkit-border-radius: 15px;
+  position: absolute;
+  top: 0px;
+  right: 1em;
+}
+
+/* Printed Header Bar */
+.reveal section div.topbar .logo {
+  top: -16px;
+  box-shadow: none;
+}
+
+.reveal .titulo {
+  position: relative;
+  color: #4EA000;
+  font-weight: bold;
+  text-shadow: none;
+  vertical-align: middle;
+  line-height: 80px;
+  font-size: 0.8em;
+  text-align: center; // Remove this and uncomment the following for a left alignment
+  //padding-left: 20px;
+}
