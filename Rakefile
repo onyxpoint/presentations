@@ -50,7 +50,7 @@ end
 def build_slides(slides)
   sorted_slides(Dir.pwd) do |slide|
     subdir = File.basename(slide,'.md')
-    if File.directory?(File.basename(slide,'.md'))
+    if @use_subsections and File.directory?(File.basename(slide,'.md'))
       has_subsections = true
       slides << '<section>'
     end
@@ -77,9 +77,17 @@ def build_slides(slides)
   slides.join("\n")
 end
 
-desc "Build the presentation based on #{REVEAL_JS_SRC}"
-task :build do
+desc "Build the presentation based on #{REVEAL_JS_SRC}
+
+  * :one_level - Don't use sub-sections"
+task :build,[:one_level] do |t,args|
   directory BUILD_DIR
+
+  args.with_defaults(
+    :one_level => false
+  )
+
+  @use_subsections = !(args.one_level)
 
   if not File.directory?(BUILD_DIR)
     sh %{git clone #{REVEAL_JS_SRC} #{BUILD_DIR}}
