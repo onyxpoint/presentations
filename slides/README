@@ -1,7 +1,9 @@
 Add all of your sections here.
 
+All files should be written as Markdown!
+
 You can arrange them however you like, with whatever name you like, just make
-sure that your files have the format <order number>_<whatever>.html.
+sure that your files have the format <order number>_<whatever>.md.
 
 Any file not named in this manner will be ignored.
 
@@ -10,5 +12,3 @@ If you want subsections, simply create a directory with the name
 
 NOTE: subsections currently do not work with the header patch as provided by
 Ciges.
-
-Also, ensure that your files start with <section> and end with </section>

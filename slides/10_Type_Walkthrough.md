@@ -1,14 +1,7 @@
-<section>
-  <div>
-    <img src="images/Spock_Cat.jpg" alt="Spock Cat">
-    <p style="font-size: small">(Star Trek: The Original Series. Season 2, Episode 7. (Oct 27, 1967))</p>
-  </div>
-</section>
+###Type Scaffold
 
-<section>
-  <h3 style="height:100%; text-align:top">Type Scaffold</h3>
-  <div style="height:100%">
-    <pre><code data-trim class="ruby">
+<pre><code data-trim class="ruby">
+
 module Puppet
   newtype(:ex_order) do
     def initialize(args) super(args) end
@@ -31,6 +24,5 @@ module Puppet
     autorequire(:file) do ['/tmp/foo'] end
   end
 end
-    </code></pre>
-  </div>
-</section>
+
+</pre>

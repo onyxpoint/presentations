@@ -3,6 +3,14 @@ body {
   font-family: "Ubuntu", "Open Sans", sans-serif;
 }
 
+.reveal strong {
+  color: #30BF30
+}
+
+.reveal b {
+  color: #30BF30
+}
+
 .reveal h1,
 .reveal h2,
 .reveal h3,
@@ -15,24 +23,32 @@ body {
   letter-spacing: -0.06em;
 }
 
-.reveal h2 {
-  margin-top: 1em;
-}
-
-.reveal h3 {
-  margin-bottom: 0.5em;
-}
-.reveal h3.fin {
-  margin-top: 2em;
-}
-.reveal h3.questions {
-  color:red;
-  font-size: 400%;
+.reveal h1 {
   font-weight: bold;
 }
 
+.reveal h2 {
+    margin-top: 1em;
+}
+
+.reveal h3 {
+    margin-bottom: 0.5em;
+}
+.reveal h3.fin {
+    margin-top: 2em;
+}
+.reveal h3.questions {
+    color:red;
+    font-size: 400%;
+    font-weight: bold;
+}
+
+.reveal h4 {
+  color: #30BF30
+}
+
 .reveal pre code {
-  max-height: 650px;
+  max-height: 800px;
 }
 
 .reveal code {
@@ -40,12 +56,8 @@ body {
 }
 
 .reveal .author {
-  margin-top: 2em;
-  font-size: smaller;
-}
-
-.reveal strong {
-  color: #30BF30
+    margin-top: 2em;
+    font-size: smaller;
 }
 
 .reveal li {
@@ -59,17 +71,7 @@ body {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #EEEEEE;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-}
-
-.reveal dl {
-  list-style-type: square;
-  text-align: left;
-}
-
-.reveal dd {
-  display: list-item;
-  list-style-type: square;
-  margin-left: 80px;
+    padding: 5px;
 }
 
 /*  Second level lists  */
@@ -80,13 +82,7 @@ body {
 
 /*  Source Code  */
 .reveal pre {
-  font-size: 0.8em;
-}
-
-/* My preferred text body alignment */
-.reveal div.text_body {
-  margin-top: 40pt;
-  text-align: left;
+    font-size: 0.8em;
 }
 
 /*********************************************
@@ -109,16 +105,16 @@ body {
 
 /* Normal Header Bar */
 .reveal div.topbar .logo {
-  background: #4EA000;
-  border-left: solid #30BF30 10px;
-  border-right: solid #30BF30 10px;
+  //background: #4EA000;
+  //border-left: solid #30BF30 10px;
+  //border-right: solid #30BF30 10px;
   padding: margin 10px;
-  border-radius: 15px;
+  //border-radius: 15px;
   padding: 5px;
   moz-border-radius: 15px;
   webkit-border-radius: 15px;
   position: absolute;
-  top: -10px;
+  top: 0px;
   right: 1em;
 }
 
@@ -128,7 +124,7 @@ body {
   box-shadow: none;
 }
 
-.reveal .titulo {
+.reveal .header_title {
   position: relative;
   color: #4EA000;
   font-weight: bold;

@@ -35,13 +35,20 @@
     <![endif]-->
     <script>
       // Title for the header bar.
-      var titulo = "<%= GLOBAL_HEADER %>";
+      var header_title = "<%= GLOBAL_HEADER %>";
+      var header_logo = "images/header_logo.png";
     </script>
   </head>
 
   <body>
 
     <div class="reveal">
+      <div class="topbar">
+        <h1 class="header_title">
+          <script>document.write(header_title)</script>
+        </h1>
+        <script>document.write('<image class="logo" src="' + header_logo + '"/>')</script>
+      </div>
       <div class="slides">
 <%= slides %>
       </div>
@@ -54,9 +61,5 @@
     <script src="js/jquery-1.11.0.min.js"></script>
     <!-- Configuration Options -->
     <script src="js/configuration.js"></script>
-    <!-- Centered page with flexbox CSS3 new properties, as proposed by millermedeiros in issue 563 https://github.com/hakimel/reveal.js/issues/563 -->
-    <script src="js/align_vertical.js"></script>
-    <!-- Added a global top level header -->
-    <script src="js/topbar.js"></script>
   </body>
 </html>

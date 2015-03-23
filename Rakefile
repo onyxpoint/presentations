@@ -26,18 +26,19 @@ EOM
 
 ### End Slide Management ###
 
-BUILD_DIR = 'build'
-SLIDE_DIR = 'slides'
+BASE_DIR = File.dirname(__FILE__)
+BUILD_DIR = "#{BASE_DIR}/build"
+SLIDE_DIR = "#{BASE_DIR}/slides"
 REVEAL_JS_SRC = 'https://github.com/onyxpoint/reveal.js'
 
 CLOBBER.include(
   BUILD_DIR
 )
 
-def sorted_slides
-  Dir.chdir(SLIDE_DIR) do
-    Dir.glob('*').sort_by{|f| File.basename(f,'.html').split('_').first.to_i}.each do |x|
-      if File.directory?(x) or x =~ /\.html$/
+def sorted_slides(slide_dir)
+  Dir.chdir(slide_dir) do
+    Dir.glob('*').sort_by{|f| File.basename(f,'.md').split('_').first.to_i}.each do |x|
+      if x =~ /\.md$/
         yield(x)
       end
     end
@@ -47,21 +48,28 @@ end
 # This can handle nested slides, unfortunately the header mods by Ciges
 # currently cause issues with vertical scrolling.
 def build_slides(slides)
-  sorted_slides do |slide|
-    if File.directory?(slide)
+  sorted_slides(Dir.pwd) do |slide|
+    subdir = File.basename(slide,'.md')
+    if File.directory?(File.basename(slide,'.md'))
+      has_subsections = true
       slides << '<section>'
-    elsif slide =~ /\.html$/
-      slides << File.read(slide).chomp
     end
 
-    subdir = File.basename(slide,'.html')
+    if slide =~ /\.md$/
+      slides << '<section data-markdown>'
+      slides << '<script type="text/template">'
+      slides << File.read(slide).chomp
+      slides << '</script>'
+      slides << '</section>'
+    end
+
     if File.directory?(subdir)
       Dir.chdir(subdir) do
         build_slides(slides)
       end
     end
 
-    if File.directory?(slide)
+    if has_subsections
       slides << '</section>'
     end
   end
@@ -84,7 +92,9 @@ task :build do
   end
 
   slides = []
-  slides = build_slides(slides)
+  Dir.chdir(SLIDE_DIR) do
+    slides = build_slides(slides)
+  end
 
   # Build the index.html file
   File.open('index.html','w') { |fh|
@@ -113,7 +123,7 @@ task :default => 'build'
 
 namespace :slide do
   slide_deck = {}
-  sorted_slides do |slide|
+  sorted_slides(SLIDE_DIR) do |slide|
     slide_deck[slide.split('_').first.to_i] = slide
   end
 
