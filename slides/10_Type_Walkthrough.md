@@ -25,4 +25,4 @@ module Puppet
   end
 end
 
-</pre>
+</code></pre>
