@@ -76,6 +76,7 @@ body {
 
 /*  Second level lists  */
 .reveal ul ul {
+    color: #30BF30;
     list-style-type: circle;
     margin-top: 0.25em;
 }

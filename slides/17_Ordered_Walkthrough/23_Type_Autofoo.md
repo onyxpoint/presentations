@@ -18,10 +18,18 @@
 
 <pre><code data-trim class="ruby">
 
-autorequire(:file) do
-  Puppet.warning("#{self[:name]}: Autorequring")
+autobefore(:file) do
+  Puppet.warning("#{self[:name]}: Autobeforing")
   ["/tmp/foo"]
 end
+
+#####################################################
+# These all work the same way as Autorequire but add
+# their respective capabilitites to the mix.
+#
+# This way you can have completely dynamic workflows
+# from within your types.
+#####################################################
 
 </code></pre>
 
@@ -29,6 +37,6 @@ end
 
 <pre><code data-trim class="ruby">
 
-warning: test: Autorequring
+warning: test: Autobeforing
 
 </code></pre>
