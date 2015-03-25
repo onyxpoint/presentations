@@ -1,4 +1,6 @@
 
 ##Full Execution Walkthrough
 
-You can find all code and output at [http://git.io/ZPuZNQ](https://gist.github.com/peiriannydd/7059200)
+The code can be found at http://git.io/jUYx
+
+You can find all sample output at [http://git.io/ZPuZNQ](https://gist.github.com/peiriannydd/7059200)

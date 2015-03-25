@@ -17,7 +17,7 @@
 
 def self.post_resource_eval
   # Only YOU can prevent memory leaks!
-  @@ex_order_classvars = nil
+  $example_type_classvars = nil
 
   Puppet.warning("FINIS!!!!")
 end

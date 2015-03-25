@@ -16,10 +16,10 @@ def initialize(args)
 
   Puppet.warning("#{self[:name]}: Type Initializing")
 
-  num_ex_orders = @catalog.resources.find_all { |r|
-    r.is_a?(Puppet::Type.type(:ex_order))
+  num_example_types = @catalog.resources.find_all { |r|
+    r.is_a?(Puppet::Type.type(:example_type))
   }.count
-  Puppet.warning("Ex_order's in the catalog: '#{num_ex_orders+1}'")
+  Puppet.warning("Ex_order's in the catalog: '#{num_example_types+1}'")
 end
 
 </code></pre>

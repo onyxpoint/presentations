@@ -11,7 +11,7 @@
 
 <pre><code data-trim class="ruby">
 
-Puppet::Type.type(:ex_order).provide(:ruby) do
+Puppet::Type.type(:example_type).provide(:ruby) do
   def baz=(should)
     # Called if insync? is false
     Puppet.warning("#{@resource[:name]}: In setter for :baz")

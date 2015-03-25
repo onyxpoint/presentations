@@ -2,7 +2,7 @@
 
 <pre><code data-trim class="ruby">
 
-ex_order { 'test':
+example_type { 'test':
   foo => 'foo',
   bar => 'bar',
   baz => 'baz'

@@ -3,7 +3,7 @@
 <pre><code data-trim class="ruby">
 
 module Puppet
-  newtype(:ex_order) do
+  newtype(:example_type) do
     def initialize(args) super(args) end
 
     def finish(args) super end

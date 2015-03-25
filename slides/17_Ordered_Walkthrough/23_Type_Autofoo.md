@@ -11,7 +11,7 @@
       **Type**
     </h3></td>
     <td width=65% style="text-align: right"><h3>
-      Auto*(before|after|notify)*
+      Auto*(before|subscribe|notify)*
     </h3></td>
   </tr>
 </table>

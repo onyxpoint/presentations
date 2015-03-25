@@ -2,8 +2,8 @@
 
 <pre><code data-trim class="ruby">
 
-Puppet::Type.type(:ex_order).provide(:ruby) do
-  @@ex_order_classvars = { :example =&gt; true }
+Puppet::Type.type(:example_type).provide(:ruby) do
+  $example_type_classvars = { :example =&gt; true }
 
   def initialize(*args)
     super(*args)
@@ -19,6 +19,11 @@ Puppet::Type.type(:ex_order).provide(:ruby) do
 
   def flush
     # If *any* property is not in sync, this will be called
+  end
+
+  def self.post_resource_eval
+    # Do this afer *all* resources of this type have been called.
+    $example_type_classvars = nil
   end
 end
 

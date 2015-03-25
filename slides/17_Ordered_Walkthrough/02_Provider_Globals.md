@@ -12,10 +12,10 @@
 
 <pre><code data-trim class="ruby">
 
-Puppet::Type.type(:ex_order).provide(:ruby) do
+Puppet::Type.type(:example_type).provide(:ruby) do
   Puppet.warning("Setting Property Class Variables")
 
-  @@ex_order_classvars = {
+  $example_type_classvars = {
     :example => true
   }
 
